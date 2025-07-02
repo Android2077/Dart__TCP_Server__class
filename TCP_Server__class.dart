@@ -2118,7 +2118,6 @@ class Socket_Struct
   //---------------------------------------------------------------Public:---------------------------------------------------------------------
 
 
-
   //---------------------------------------------------------------------------------------------------------------------
   void set__ReadParamFlag_for_Socket(read_flag ReadUntill_flag_)
   {
@@ -2234,7 +2233,7 @@ class Acceptor_struct
       //------------------Устанавливаем на Сокет общие параметры на чтение:-----------------------
 
       Socket_Struct_added.set__ReadParamFlag_for_Socket(_read_flag);
-      Socket_Struct_added.set__ReadUntill_Seperator_for_Socket(_Read__ReadUntill_seperator);
+      if(_Read__ReadUntill_seperator != null){Socket_Struct_added.set__ReadUntill_Seperator_for_Socket(_Read__ReadUntill_seperator!);}
       Socket_Struct_added.set__AccumulateBuffer_Size_for_Socket(_Read__Accumulate_size);
       //-------------------------------------------------------------------------------------------
 
@@ -2535,7 +2534,7 @@ class Acceptor_struct
     //------------------------------------------------------------------------
     _Read__ReadUntill_seperator = Uint8List(Uint8List_Separator.length);   //Выделим память
 
-    memcpy(_Read__ReadUntill_seperator, 0, Uint8List_Separator, 0, Uint8List_Separator.length);  //перекопируем Пользовательский разделитель.
+    memcpy(_Read__ReadUntill_seperator!, 0, Uint8List_Separator, 0, Uint8List_Separator.length);  //перекопируем Пользовательский разделитель.
     //------------------------------------------------------------------------
 
 
@@ -2629,7 +2628,7 @@ class Acceptor_struct
   //-----------------------------------------------
 
   //-----------------------------------------------
-  late Uint8List _Read__ReadUntill_seperator;                      //Общий для всех Сокетов данного Акцептора.
+  Uint8List? _Read__ReadUntill_seperator = null;                   //Общий для всех Сокетов данного Акцептора.
   int _Read__Accumulate_size = 1024;   //по умолчанию.             //Общий для всех Сокетов данного Акцептора.
 
   read_flag _read_flag = read_flag.Original_chunk;   //Флаг того, как обрабатывать Входящие данные на Сокете.
